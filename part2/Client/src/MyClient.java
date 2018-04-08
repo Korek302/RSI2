@@ -62,7 +62,7 @@ public class MyClient
 				{
 					System.out.println("Podaj operacje (add/sub): ");
 					String in1 = reader.next();
-					System.out.println(in1);
+					
 					if(!in1.equals("add") && !in1.equals("sub"))
 					{
 						System.out.println("Bledna operacja!");
