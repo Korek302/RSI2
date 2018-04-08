@@ -1,11 +1,35 @@
 import java.rmi.RemoteException;
 
+/**
+ * @author jacek blady 228140
+ *
+ * Task class
+ * implements ITask
+ * Specifies tasks for workers
+ */
 public class Task2 implements ITask
 {
-	public double x1 = 5.6;
-	public double x2 = 2.3;
+	/**
+	 * double x1
+	 * First value in task calculate method.
+	 */
+	public double x1;
+	
+	/**
+	 * double x2
+	 * Second value in task calculate method.
+	 */
+	public double x2;
+	
+	/**
+	 * String operation
+	 * Specifies operation of the task
+	 */
 	public String operation;
 	
+	/**
+	 * Default constructor of the Task2 class.
+	 */
 	public Task2()
 	{
 		x1 = 0.0;
@@ -13,6 +37,12 @@ public class Task2 implements ITask
 		operation = null;
 	}
 	
+	/**
+	 * Parametrized constructor of the Task2 class.
+	 * @param x1 - double - new value of x1 variable
+	 * @param x2 - double - new value of x2 variable
+	 * @param operation - String - new value of operation variable
+	 */
 	public Task2(double x1, double x2, String operation)
 	{
 		this.x1 = x1;
@@ -20,6 +50,11 @@ public class Task2 implements ITask
 		this.operation = operation;
 	}
 	
+	/**
+	 * Implementation of calculate method from ITask interface.
+	 * returns Result type result
+	 * throws RemoteException
+	 */
 	@Override
 	public Result calculate() throws RemoteException 
 	{

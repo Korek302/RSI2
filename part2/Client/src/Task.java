@@ -13,13 +13,13 @@ public class Task implements ITask
 	 * double x1
 	 * First value in task calculate method.
 	 */
-	public double x1 = 5.6;
+	public double x1;
 	
 	/**
 	 * double x2
 	 * Second value in task calculate method.
 	 */
-	public double x2 = 2.3;
+	public double x2;
 	
 	/**
 	 * String operation
