@@ -1,8 +1,19 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * @author jacek blady 228140
+ *
+ * Main class of the Server side of the service
+ * Specifies the behaviour of server side of the application
+ * Contains main method
+ */
 public class MyServer 
 {
+	/*
+	 * Main method of the project - entry point of the application
+	 * @params String args - contains the supplied command-line arguments
+	 */
 	public static void main(String[] args)
 	{
 		if(args.length == 0)

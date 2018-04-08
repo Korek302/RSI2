@@ -2,8 +2,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * @author jacek blady 228140
+ *
+ * Main class of the Client side of the service
+ * Specifies the behaviour of client side of the application
+ * Contains main method
+ */
 public class MyClient 
 {
+	/*
+	 * Main method of the project - entry point of the application
+	 * @params String args - contains the supplied command-line arguments
+	 */
 	public static void main(String[] args) 
 	{
 		ArrayList<String> addressList = new ArrayList<String>();
