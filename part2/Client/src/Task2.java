@@ -24,8 +24,7 @@ public class Task2 implements ITask
 	public Result calculate() throws RemoteException 
 	{
 		Result out = new Result();
-		out.result_description = operation;
-		out.result = 1.9 + 2.4;
+		out.result_description = operation + this.getClass().getName();
 		
 		switch(operation)
 		{
