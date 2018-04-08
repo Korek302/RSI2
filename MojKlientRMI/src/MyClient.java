@@ -3,11 +3,12 @@ public class MyClient
 {
 	public static void main(String[] args)
 	{
-		double wynik;
 		CalcObject zObiekt;
-		
 		CalcObject2 zObiekt2;
+		
 		ResultType wynik2;
+		double wynik;
+		
 		InputType inObj;
 		
 		if(args.length == 0)
@@ -17,13 +18,6 @@ public class MyClient
 		}
 		
 		String adres = args[0];
-		
-		if(args.length < 2)
-		{
-			System.out.println("You have to enter 2nd RMI object address in the form: //host_address/service_name");
-			return;
-		}
-		
 		String adres2 = args[1];
 		
 		if(System.getSecurityManager() == null)
@@ -43,10 +37,6 @@ public class MyClient
 		}
 		System.out.println("Referencja do " + adres + " jest pobrana.");
 		
-		inObj = new InputType();
-		inObj.x1 = 5.2;
-		inObj.x2 = 1.3;
-		inObj.operation = "add";
 		
 		try
 		{
@@ -59,6 +49,11 @@ public class MyClient
 			return;
 		}
 		System.out.println("Referencja do " + adres2 + " jest pobrana.");
+		
+		inObj = new InputType();
+		inObj.x1 = 5.2;
+		inObj.x2 = 1.3;
+		inObj.operation = "add";
 		
 		try
 		{

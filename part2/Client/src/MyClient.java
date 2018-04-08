@@ -1,32 +1,14 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MyClient 
 {
 	public static void main(String[] args) 
 	{
-		double wynik;
-		
-		int workerNum = 3;
-		
-		IWorker worker1;
-		IWorker worker2;
-		IWorker worker3;
-		
-		Result result1;
-		Result result2;
-		Result result3;
-		
-		Task task1;
-		Task2 task2;
-		Task task3;
-		
-		ArrayList<IWorker> workerList = new ArrayList<IWorker>();
-		for(int i = 0; i < workerNum; i++)
-		{
-			workerList.add();
-		}
-		
 		ArrayList<String> addressList = new ArrayList<String>();
+		ArrayList<IWorker> workerList = new ArrayList<IWorker>();
+		ArrayList<Result> resultList = new ArrayList<Result>();
+		ArrayList<ITask> taskList = new ArrayList<ITask>();
 		
 		if(args.length == 0)
 		{
@@ -34,52 +16,42 @@ public class MyClient
 			return;
 		}
 		
-		for(String s : args)
-		{
-			addressList.add(s);
-		}
-		
 		if(System.getSecurityManager() == null)
 		{
 			System.setSecurityManager(new SecurityManager());
 		}
 		
-		try
+		for(int i = 0; i < args.length; i++)
 		{
-			for(String s : addressList)
+			addressList.add(args[i]);
+			try
 			{
-				
+				workerList.add((IWorker) java.rmi.Naming.lookup(addressList.get(i)));
+			}
+			catch(Exception e)
+			{
+				System.out.println("Nie mozna pobrac referencji do " + addressList.get(i));
+				e.printStackTrace();
+				return;
 			}
 		}
-		catch(Exception e)
-		{
-			System.out.println("Nie mozna pobrac referencji do " + adres);
-			e.printStackTrace();
-			return;
-		}
-		System.out.println("Referencja do " + adres + " jest pobrana.");
 		
-		inObj = new InputType();
-		inObj.x1 = 5.2;
-		inObj.x2 = 1.3;
-		inObj.operation = "add";
+		taskList = new ArrayList<ITask>
+		(
+			Arrays.asList
+			(
+				new Task(1.4, 5.6, "add"),
+				new Task2(3.3, 4.1, "sub"),
+				new Task(3.3, 4.1, "sub")
+			)
+		);
 		
 		try
 		{
-			zObiekt2 = (CalcObject2) java.rmi.Naming.lookup(adres2);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Nie mozna pobrac referencji do " + adres2);
-			e.printStackTrace();
-			return;
-		}
-		System.out.println("Referencja do " + adres2 + " jest pobrana.");
-		
-		try
-		{
-			wynik = zObiekt.calculate(1.1, 2.2);
-			wynik2 = zObiekt2.calculate(inObj);
+			for(int i = 0; i < workerList.size(); i++)
+			{
+				resultList.add(workerList.get(i).calculate(taskList.get(i)));
+			}
 		}
 		catch(Exception e)
 		{
@@ -87,8 +59,13 @@ public class MyClient
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Wynik = " + wynik);
-		System.out.println("Wynik2 = " + wynik2.result + ", desc: " + wynik2.result_description);
+		
+		int i = 0;
+		for(Result r : resultList)
+		{
+			System.out.println("Wynik uslugi nr " + ++i + ": " + r.result);
+			System.out.println("opis: " + r.result_description);
+		}
 		return;
 	}
 }

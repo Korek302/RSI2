@@ -18,7 +18,7 @@ public class MyServer
 		
 		try
 		{
-			Registry reg = LocateRegistry.createRegistry(1099);
+			LocateRegistry.createRegistry(1099);
 		}
 		catch(Exception e)
 		{
