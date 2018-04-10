@@ -30,4 +30,9 @@ public class Worker extends UnicastRemoteObject implements IWorker
 		return t.calculate();
 	}
 
+	@Override
+	public ResultSort calculateSort(ITask t) throws RemoteException 
+	{
+		return t.calculateSort();
+	}
 }

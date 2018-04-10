@@ -14,4 +14,5 @@ public interface ITask extends Serializable
 	 * @throws RemoteException
 	 */
 	public Result calculate() throws RemoteException;
+	public ResultSort calculateSort() throws RemoteException;
 }

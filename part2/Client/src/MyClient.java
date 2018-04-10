@@ -53,35 +53,55 @@ public class MyClient
 		do
 		{
 			System.out.println("Liczba dostepnych worker'ow: " + workerList.size());
-			System.out.println("Nacisnij: \n[1] - dodaj zadanie1\n[2] - dodaj zadanie2\n[0] - zakoncz\n");
+			System.out.println("Nacisnij: \n[1] - dodaj zadanie1\n[2] - dodaj zadanie2\n[3] - sortowanie\n[0] - zakoncz\n");
 	    	choice = reader.next();
 	    	
 	    	if(choice.toCharArray()[0] != '0')
 	    	{
+	    		
 				if(taskList.size() < workerList.size())
 				{
-					System.out.println("Podaj operacje (add/sub): ");
-					String in1 = reader.next();
-					
-					if(!in1.equals("add") && !in1.equals("sub"))
-					{
-						System.out.println("Bledna operacja!");
-					}
-					else
-					{
-						System.out.println("Podaj pierwsza liczbe: ");
-						double in2 = reader.nextDouble();
-						System.out.println("Podaj druga liczbe: ");
-						double in3 = reader.nextDouble();
+					if(choice.toCharArray()[0] == '1')
+		    		{
+						System.out.println("Podaj operacje (add/sub): ");
+						String in1 = reader.next();
 						
-						if(choice.toCharArray()[0] == '1')
+						if(!in1.equals("add") && !in1.equals("sub"))
 						{
+							System.out.println("Bledna operacja!");
+						}
+						else
+						{
+							System.out.println("Podaj pierwsza liczbe: ");
+							double in2 = reader.nextDouble();
+							System.out.println("Podaj druga liczbe: ");
+							double in3 = reader.nextDouble();
 							taskList.add(new Task(in2, in3, in1));
 						}
-						else if(choice.toCharArray()[0] == '2')
+		    		}
+					else if(choice.toCharArray()[0] == '2')
+		    		{
+						System.out.println("Podaj operacje (add/sub): ");
+						String in1 = reader.next();
+						
+						if(!in1.equals("add") && !in1.equals("sub"))
 						{
+							System.out.println("Bledna operacja!");
+						}
+						else
+						{
+							System.out.println("Podaj pierwsza liczbe: ");
+							double in2 = reader.nextDouble();
+							System.out.println("Podaj druga liczbe: ");
+							double in3 = reader.nextDouble();
 							taskList.add(new Task2(in2, in3, in1));
 						}
+		    		}
+					else if(choice.toCharArray()[0] == '3')
+					{
+						int[] list = new int[]
+								{4,5,6,3,4,9,4,0,1,5,7,5,3,4,8,3,2};
+						taskList.add(new Task3(list));
 					}
 				}
 				else
@@ -102,7 +122,7 @@ public class MyClient
 			)
 		);*/
 		
-		try
+		/*try
 		{
 			for(int i = 0; i < taskList.size(); i++)
 			{
@@ -114,14 +134,47 @@ public class MyClient
 			System.out.println("Blad zdalnego wywolania.");
 			e.printStackTrace();
 			return;
+		}*/
+		
+		/*try
+		{
+			for(int i = 0; i < taskList.size(); i++)
+			{
+				System.out.println("Wynik uslugi nr " + ++i + ": " +
+						workerList.get(i).calculate(taskList.get(i)).result);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Blad zdalnego wywolania.");
+			e.printStackTrace();
+			return;
+		}*/
+		
+		try
+		{
+			System.out.println("Wynik uslugi nr " + 1 + ": " +
+					workerList.get(0).calculateSort(taskList.get(0)).result);
+			System.out.println("Wynik uslugi nr " + 2 + ": " +
+					workerList.get(1).calculate(taskList.get(1)).result);
+			System.out.println("Wynik uslugi nr " + 3 + ": " +
+					workerList.get(2).calculate(taskList.get(2)).result);
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("Blad zdalnego wywolania.");
+			e.printStackTrace();
+			return;
 		}
 		
-		int i = 0;
+		/*int i = 0;
+		
 		for(Result r : resultList)
 		{
 			System.out.println("Wynik uslugi nr " + ++i + ": " + r.result);
 			System.out.println("opis: " + r.result_description);
-		}
+		}*/
 		return;
 	}
 }

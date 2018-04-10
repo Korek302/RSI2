@@ -76,4 +76,10 @@ public class Task implements ITask
 		
 		return out;
 	}
+
+	@Override
+	public ResultSort calculateSort() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

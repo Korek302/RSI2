@@ -15,4 +15,6 @@ public interface IWorker extends Remote
 	 * @params ITask - task for worker to perform
 	 */
 	public Result calculate(ITask t) throws RemoteException;
+
+	ResultSort calculateSort(ITask t) throws RemoteException;
 }
