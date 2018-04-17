@@ -38,7 +38,6 @@ public class MyServer
 		
 		try
 		{
-			
 			for(String s : args)
 			{
 				Worker worker = new Worker();

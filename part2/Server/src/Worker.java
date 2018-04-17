@@ -25,9 +25,24 @@ public class Worker extends UnicastRemoteObject implements IWorker
 	 * @params ITask - task for worker to perform
 	 */
 	@Override
-	public Result calculate(ITask t) throws RemoteException 
+	public Result calculate(Input input) throws RemoteException 
 	{
-		return t.calculate();
+		if(input.operation.equals("add"))
+		{
+			return (new Task1(input)).calculate();
+		}
+		else if(input.operation.equals("fac"))
+		{
+			return (new Task2(input)).calculate();
+		}
+		else if(input.operation.equals("sort"))
+		{
+			return (new Task3(input)).calculate();
+		}
+		else
+		{
+			return new Result();
+		}
 	}
 
 }

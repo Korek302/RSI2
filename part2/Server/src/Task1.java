@@ -1,4 +1,6 @@
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jacek blady 228140
@@ -7,14 +9,22 @@ import java.rmi.RemoteException;
  * implements ITask
  * Specifies tasks for workers
  */
-public class Task2 extends Task
+public class Task1 extends Task
 {
-	public Task2()
+	/**
+	 * Default constructor of the Task class.
+	 */
+	public Task1()
 	{
 		super();
 	}
 	
-	public Task2(Input input)
+	/**
+	 * Parametrized constructor of the Task abstract class.
+	 * @param list - List<Integer> - new list of values for the operation
+	 * @param operation - String - new value of operation variable
+	 */
+	public Task1(Input input)
 	{
 		super(input);
 	}
@@ -28,14 +38,9 @@ public class Task2 extends Task
 	public Result calculate() throws RemoteException 
 	{
 		Result out = new Result();
-		int fact = 1;
-		for(int i = 1; i <= list.get(0); i++)
-		{    
-		      fact = fact*i;
-		}  
 		out.result_description = operation + this.getClass().getName();
-		out.result.add(fact);
-			
+		out.result.add(0, list.get(0) + list.get(1));
+		
 		return out;
 	}
 }

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -20,13 +22,13 @@ public class MyClient
 		ArrayList<String> addressList = new ArrayList<String>();
 		ArrayList<IWorker> workerList = new ArrayList<IWorker>();
 		ArrayList<Result> resultList = new ArrayList<Result>();
-		ArrayList<ITask> taskList = new ArrayList<ITask>();
+		ArrayList<Input> inputList = new ArrayList<Input>();
 		
-		/*if(args.length == 0)
+		if(args.length == 0)
 		{
 			System.out.println("You have to enter 1st RMI object address in the form: //host_address/service_name");
 			return;
-		}*/
+		}
 		
 		if(System.getSecurityManager() == null)
 		{
@@ -39,6 +41,8 @@ public class MyClient
 			try
 			{
 				workerList.add((IWorker) java.rmi.Naming.lookup(addressList.get(i)));
+				System.out.println("Referencja do " + addressList.get(i) + " jest pobrana");
+				//System.out.println("Do serwera zostala przekazana lista: " + list);
 			}
 			catch(Exception e)
 			{
@@ -53,35 +57,57 @@ public class MyClient
 		do
 		{
 			System.out.println("Liczba dostepnych worker'ow: " + workerList.size());
-			System.out.println("Nacisnij: \n[1] - dodaj zadanie1\n[2] - dodaj zadanie2\n[0] - zakoncz\n");
+			System.out.println("Nacisnij: \n[1] - dodawanie\n[2] - silnia\n[3] - sortowanie\n[4] - sortowanie 1000 losowych liczb\n[0] - zakoncz\n");
 	    	choice = reader.next();
 	    	
 	    	if(choice.toCharArray()[0] != '0')
 	    	{
-				if(taskList.size() < workerList.size())
+				if(inputList.size() < workerList.size())
 				{
-					System.out.println("Podaj operacje (add/sub): ");
-					String in1 = reader.next();
-					
-					if(!in1.equals("add") && !in1.equals("sub"))
+					if(choice.toCharArray()[0] == '1')
 					{
-						System.out.println("Bledna operacja!");
+						System.out.println("Podaj pierwsza liczbe: ");
+						int in1 = reader.nextInt();
+						System.out.println("Podaj druga liczbe: ");
+						int in2 = reader.nextInt();
+						inputList.add(new Input("add", Arrays.asList(in1, in2)));
+					}
+					else if(choice.toCharArray()[0] == '2')
+					{
+						System.out.println("Podaj liczbe: ");
+						int in1 = reader.nextInt();
+						inputList.add(new Input("fac", Arrays.asList(in1)));
+					}
+					else if(choice.toCharArray()[0] == '3')
+					{
+						System.out.println("Podaj liczby do posortowania: ");
+						String in1 = reader.next();
+						System.out.println("Podaj liczbe watkow: ");
+						int in2 = reader.nextInt();
+						List<Integer> tempList = new ArrayList<Integer>();
+						for(String s : in1.split(","))
+						{
+							tempList.add(Integer.parseInt(s));
+						}
+						tempList.add(in2);
+						inputList.add(new Input("sort", tempList));
+					}
+					else if(choice.toCharArray()[0] == '4')
+					{
+						System.out.println("Podaj liczbe watkow: ");
+						int in1 = reader.nextInt();
+						List<Integer> list = new ArrayList<Integer>();
+						Random rand = new Random();
+						for(int i = 0; i < 999; i++)
+						{
+							list.add(rand.nextInt(10000));
+						}
+						list.add(in1);
+						inputList.add(new Input("sort", list));
 					}
 					else
 					{
-						System.out.println("Podaj pierwsza liczbe: ");
-						double in2 = reader.nextDouble();
-						System.out.println("Podaj druga liczbe: ");
-						double in3 = reader.nextDouble();
-						
-						if(choice.toCharArray()[0] == '1')
-						{
-							taskList.add(new Task(in2, in3, in1));
-						}
-						else if(choice.toCharArray()[0] == '2')
-						{
-							taskList.add(new Task2(in2, in3, in1));
-						}
+						System.out.println("Nieprawidlowa operacja!");
 					}
 				}
 				else
@@ -92,21 +118,11 @@ public class MyClient
 		}while(choice.toCharArray()[0] != '0');
 	    reader.close();
 		
-		/*taskList = new ArrayList<ITask>
-		(
-			Arrays.asList
-			(
-				new Task(1.4, 5.6, "add"),
-				new Task2(3.3, 4.1, "sub"),
-				new Task(3.3, 4.1, "sub")
-			)
-		);*/
-		
 		try
 		{
-			for(int i = 0; i < taskList.size(); i++)
+			for(int i = 0; i < inputList.size(); i++)
 			{
-				resultList.add(workerList.get(i).calculate(taskList.get(i)));
+				resultList.add(workerList.get(i).calculate(inputList.get(i)));
 			}
 		}
 		catch(Exception e)
@@ -119,8 +135,12 @@ public class MyClient
 		int i = 0;
 		for(Result r : resultList)
 		{
-			System.out.println("Wynik uslugi nr " + ++i + ": " + r.result);
-			System.out.println("opis: " + r.result_description);
+			System.out.println("Wynik uslugi nr " + ++i + ": ");
+			for(int j = 0; j < r.result.size(); j++)
+			{
+				System.out.print(r.result.get(j) + " ");
+			}
+			System.out.println("\nopis: " + r.result_description + "\n");
 		}
 		return;
 	}

@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * @author jacek blady 228140
@@ -21,5 +23,11 @@ public class Result implements Serializable
 	/*
 	 * Double value of the result of an operation
 	 */
-	public double result;
+	public List<Integer> result;
+	
+	public Result()
+	{
+		result_description = "brak";
+		result = new ArrayList<Integer>();
+	}
 }
