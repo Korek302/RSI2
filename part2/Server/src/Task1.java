@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * @author jacek blady 228140
  *
- * Task class
- * implements ITask
+ * Task1 class
+ * extends Task
  * Specifies tasks for workers
  */
 public class Task1 extends Task
 {
 	/**
-	 * Default constructor of the Task class.
+	 * Default constructor of the Task1 class.
 	 */
 	public Task1()
 	{
@@ -20,9 +20,8 @@ public class Task1 extends Task
 	}
 	
 	/**
-	 * Parametrized constructor of the Task abstract class.
-	 * @param list - List<Integer> - new list of values for the operation
-	 * @param operation - String - new value of operation variable
+	 * Parametrized constructor of the Task1 abstract class.
+	 * @param input - Input - values for the operation
 	 */
 	public Task1(Input input)
 	{

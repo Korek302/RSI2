@@ -2,13 +2,21 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * @author jacek blady 228140
+ * Task abstract class
+ * Stores basic Task variables and constructors
+ * implements ITask
+ */
 public abstract class Task implements ITask
 {
+	/*
+	 * List of values used for the task (List<Integer)
+	 */
 	public List<Integer> list;
 	
 	/**
-	 * String operation
-	 * Specifies operation of the task
+	 * Specifies operation of the task (String)
 	 */
 	public String operation;
 	
@@ -32,6 +40,9 @@ public abstract class Task implements ITask
 		this.operation = input.operation;
 	}
 	
+	/*
+	 * @see ITask#calculate()
+	 */
 	@Override
 	public abstract Result calculate() throws RemoteException;
 }

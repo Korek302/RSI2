@@ -12,7 +12,7 @@ public interface IWorker extends Remote
 	 * Method that specifies what workers do
 	 * @return Result type value - outcome of the method is specified in the implementation of the interface
 	 * @throws RemoteException
-	 * @params ITask - task for worker to perform
+	 * @params Input - input values for a task to perform
 	 */
 	public Result calculate(Input t) throws RemoteException;
 }

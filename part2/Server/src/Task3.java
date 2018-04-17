@@ -8,11 +8,18 @@ import java.util.concurrent.Executors;
 
 public class Task3 extends Task
 {
+	/**
+	 * Default constructor of the Task1 class.
+	 */
 	public Task3()
 	{
 		super();
 	}
 	
+	/**
+	 * Parametrized constructor of the Task3 abstract class.
+	 * @param input - Input - values for the operation
+	 */
 	public Task3(Input input)
 	{
 		super(input);
@@ -44,6 +51,14 @@ public class Task3 extends Task
 		return out;
 	}
 	
+	/*
+	 * Method used for sorting list in ascending order
+	 * Uses many thread and ExecutorService, CountDownLatch classes
+	 * @return List<Integer> type value - sorted l list
+	 * @throws InterruptedException
+	 * @params l - List<Integer> - input list to sort
+	 * @params threadCount - int - number of threads to be used
+	 */
 	private List<Integer> sort(List<Integer> l, int threadCount) throws InterruptedException
 	{
 		ExecutorService executor = Executors.newFixedThreadPool(threadCount);
@@ -64,6 +79,12 @@ public class Task3 extends Task
 	    return merge(listsToSort, l.size());
 	}
 	
+	/*
+	 * Method used for spliting one list into list of lists
+	 * @return List<List<Integer>> type value - unsorted list of lists of the input values
+	 * @params l - List<Integer> - input list to split
+	 * @params count - int - number of sublists
+	 */
 	private List<List<Integer>> split(List<Integer> l, int count) 
 	{
 	    List<List<Integer>> out = new ArrayList<>();
@@ -75,7 +96,12 @@ public class Task3 extends Task
 	    return out;
 	}
 	
-
+	/*
+	 * Method used to merge sorted sublists in ascending order
+	 * @return List<Integer> type value - sorted and merged list
+	 * @params l - List<List<Integer>> - input list of lists to merge
+	 * @params listLength - int - length of the final list
+	 */
 	private List<Integer> merge(List<List<Integer>> listOfLists, int listLength) 
 	{
 		List<Integer> out = new ArrayList<Integer>();

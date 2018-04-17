@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -10,17 +11,26 @@ import java.util.List;
 public class Result implements Serializable
 {
 	/*
-	 * Final long value that specifies the serialization version
+	 * Constant value that specifies the serialization version (long)
 	 */
 	private static final long serialVersionUID = 102L;
 	
 	/*
-	 * String value describing the result, usually specifies the operation giving the result
+	 * String value describing the result, usually specifies the operation giving the result (String)
 	 */
 	String result_description;
 	
 	/*
-	 * Double value of the result of an operation
+	 * Values of the result of an operation (List<Integer>)
 	 */
 	public List<Integer> result;
+	
+	/**
+	 * Default constructor of the Task class.
+	 */
+	public Result()
+	{
+		result_description = "brak";
+		result = new ArrayList<Integer>();
+	}
 }

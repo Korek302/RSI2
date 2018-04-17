@@ -2,18 +2,24 @@ import java.rmi.RemoteException;
 
 /**
  * @author jacek blady 228140
- *
- * Task class
- * implements ITask
+ * Task2 class
+ * extends Task
  * Specifies tasks for workers
  */
 public class Task2 extends Task
 {
+	/**
+	 * Default constructor of the Task2 class.
+	 */
 	public Task2()
 	{
 		super();
 	}
 	
+	/**
+	 * Parametrized constructor of the Task2 abstract class.
+	 * @param input - Input - values for the operation
+	 */
 	public Task2(Input input)
 	{
 		super(input);
